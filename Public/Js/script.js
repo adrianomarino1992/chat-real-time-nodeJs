@@ -22,10 +22,7 @@ function IO(name) {
         socket.emit('handshake', { name: name });
     });   
 
-    socket.on('disconnectThatSoc', function(){
-         
-        socket.disconnect({ name: NAME });
-
+    socket.on('disconnect', function(){ 
     });
 
     socket.on('handshake-done', (msg) => {
