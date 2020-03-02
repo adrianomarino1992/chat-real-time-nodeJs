@@ -4,7 +4,7 @@ var NAME;
 
 $('#entrar').on('click', () => {
 
-    if($('#user') == "789" && $('#password')=="123456789"){
+    if($('#user').val() == "789" && $('#password').val()=="123456789"){
         let name = $('#name').val().trim();
         if (name == '') {
             alert('Nome vazio');
