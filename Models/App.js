@@ -10,7 +10,7 @@ let Util = new Utilidades();
 exports.Start = (port) => {
 
     Http.listen(port, () => {
-        Util.Console('Servidor Rodando na porta ' + port || process.env.PORT);
+        Util.Console('Servidor Rodando na porta ' + port);
     })
 
     Socket.Start(Http);
