@@ -65,7 +65,7 @@ exports.Start = (Http) => {
         Socket.on('send-msg', (msg) => {
             let date = Util.Data();
             for (let c of Clientes) {
-                c.emit('sent-msg', { date: `${date.hora}:${date.minuto}`, msg: msg });
+                c.Socket.emit('sent-msg', { date: `${date.hora}:${date.minuto}`, msg: msg });
             }
 
         })
