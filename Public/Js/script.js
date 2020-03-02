@@ -3,14 +3,23 @@ var socket;
 var NAME;
 
 $('#entrar').on('click', () => {
-    let name = $('#name').val().trim();
-    if (name == '') {
-        alert('Nome vazio');
-    } else {
-        IO(name);
-        NAME = name;
-        $('#login-back').fadeOut();
+
+    if($('#user') == "789" && $('#password')=="123456789"){
+        let name = $('#name').val().trim();
+        if (name == '') {
+            alert('Nome vazio');
+        } else {
+            IO(name);
+            NAME = name;
+            $('#login-back').fadeOut();
+        }
+    }else{
+        alert('Acesso negado ! ');
     }
+
+
+
+    
 })
 
 
@@ -55,20 +64,14 @@ function IO(name) {
 
 
 
-$('#enviar').on('click', () => {
+$('#enviar').on('click', () => {    
 
-    if($('#user') == "789" && $('#password')=="123456789"){
-        let msg = $('#msg').val().trim();
+    let msg = $('#msg').val().trim();
 
-        if (msg == '') {
-            alert('Mensagem vazia');
-        } else {
-            socket.emit('send-msg', { name: NAME, msg: msg });
-            $('#msg').val('');
-        }
-    }else{
-        alert('Acesso negado ! ');
+    if (msg == '') {
+        alert('Mensagem vazia');
+    } else {
+        socket.emit('send-msg', { name: NAME, msg: msg });
+        $('#msg').val('');
     }
-
-    
 })
