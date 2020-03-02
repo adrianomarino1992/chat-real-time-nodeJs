@@ -56,12 +56,19 @@ function IO(name) {
 
 
 $('#enviar').on('click', () => {
-    let msg = $('#msg').val().trim();
 
-    if (msg == '') {
-        alert('Mensagem vazia');
-    } else {
-        socket.emit('send-msg', { name: NAME, msg: msg });
-        $('#msg').val('');
+    if($('#user') == "789" && $('#password')=="123456789"){
+        let msg = $('#msg').val().trim();
+
+        if (msg == '') {
+            alert('Mensagem vazia');
+        } else {
+            socket.emit('send-msg', { name: NAME, msg: msg });
+            $('#msg').val('');
+        }
+    }else{
+        alert('Acesso negado ! ');
     }
+
+    
 })
