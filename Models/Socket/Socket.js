@@ -1,6 +1,7 @@
 let Utilidades = require('../Utilidades/Utilizadades');
 let Util = new Utilidades();
 let Clientes = [];
+let Messages = [];
 
 
 function ListarNames() {
@@ -35,7 +36,7 @@ exports.Start = (Http) => {
 
             for (let c of Clientes) {
                 
-                    c.Socket.emit('handshake-done', { enter: `${date.hora}:${date.minuto} -- ${msg.name} Conectado `, names: ListarNames() });
+                    c.Socket.emit('handshake-done', { enter: `${date.dia}/${date.mes} ${date.hora}:${date.minuto} -- ${msg.name} Conectado `, names: ListarNames(), msgs : Messages });
                 
             }
 
@@ -54,7 +55,7 @@ exports.Start = (Http) => {
             if (del != null) {
                 let index = Clientes.indexOf(del);
                 Clientes.splice(index,1);  
-                del.Socket.broadcast.emit('handshake-done', { enter : `${date.hora}:${date.minuto} -- ${del.Name} Desconectado `, names: ListarNames() });          
+                del.Socket.broadcast.emit('handshake-done', { enter : `${date.dia}/${date.mes} ${date.hora}:${date.minuto} -- ${del.Name} Desconectado `, names: ListarNames() });          
             }
         });
 
@@ -63,9 +64,13 @@ exports.Start = (Http) => {
         })
 
         Socket.on('send-msg', (msg) => {
+            
             let date = Util.Data();
+
+            Messages.push({from : msg.name , msg : { date: `${date.dia}/${date.mes} ${date.hora}:${date.minuto}`, msg: msg } });
+            console.log(Messages);
             for (let c of Clientes) {
-                c.Socket.emit('sent-msg', { date: `${date.hora}:${date.minuto}`, msg: msg });
+                c.Socket.emit('sent-msg', { date: `${date.dia}/${date.mes} ${date.hora}:${date.minuto}`, msg: msg });
             }
 
         })
