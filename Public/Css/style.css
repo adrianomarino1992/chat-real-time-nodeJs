@@ -7,7 +7,7 @@ body{
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 10%;
+    height: 65px;
     border-bottom: 1px solid rgba(129, 251, 6, 0.605);
     overflow: auto;
     background-color:  rgba(245, 241, 241, 0.905);
@@ -17,11 +17,11 @@ body{
 
 #usuarios {
     position: absolute;
-    top: 10%;
+    top: 65px;
     right: 0px;
     width: 20%;
     border-left: 1px solid rgba(13, 243, 1, 0.605);
-    height: 80%;
+    height: calc(90% - 65px);
     padding: 10px;
     overflow: auto;
     background-color:  rgba(245, 241, 241, 0.905);
@@ -60,7 +60,7 @@ body{
 
 #msg-box {
     position: absolute;
-    top: 10%;
+    top: 65px;
     left: 0%;
     width: calc(80% - 40px);
     padding: 10px;
