@@ -13,7 +13,7 @@ module.exports = class Utilizadades {
         let info = {
             
             minuto: date.getMinutes(),
-            hora: date.getHours(),
+            hora: date.getHours() - 3, // para host no EUA
             dia: date.getDate(),
             mes: date.getMonth() + 1,
             ano: date.getUTCFullYear()
