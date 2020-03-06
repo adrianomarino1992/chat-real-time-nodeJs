@@ -29,16 +29,16 @@ exports.Start = (Http) => {
                 Socket: Socket,
                 Name: msg.name
             }
-
-            Clientes.push(cliente);
-
+           
+            
             let date = Util.Data();
 
-            for (let c of Clientes) {
-                
-                    c.Socket.emit('handshake-done', { enter: `${date.dia}/${date.mes} ${date.hora}:${date.minuto} -- ${msg.name} Conectado `, names: ListarNames(), msgs : Messages });
-                
+            for (let c of Clientes) {                
+                    c.Socket.emit('handshake-done', { enter: `${date.dia}/${date.mes} ${date.hora}:${date.minuto} -- ${msg.name} Conectado `, names : [], msgs : []});                
             }
+            Clientes.push(cliente);
+
+            cliente.Socket.emit('handshake-done', { enter: `${date.dia}/${date.mes} ${date.hora}:${date.minuto} -- ${msg.name} Conectado `, names: ListarNames(), msgs : Messages });
 
         })
 
