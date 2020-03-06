@@ -92,3 +92,10 @@ $('#enviar').on('click', () => {
         $('#msg').val('');
     }
 })
+
+
+$('#msg').on('keypress',(event)=>{
+    if(event.keyCode === 13){
+        $('#enviar').click();
+    }
+})

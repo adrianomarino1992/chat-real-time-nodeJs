@@ -22,6 +22,10 @@ exports.Start = (Application, _path) => {
     Application.App.get('/jquery.js', function (req, res) {
         res.sendFile(_path + "/Public/jquery/" + "jquery3.4.1.js");
     });
+    Application.App.get('/logo.png', function (req, res) {
+        res.sendFile(_path + "/Public/Img/" + "logo.png");
+    });
+
 
 
     Application.App.get('/console', (req, res) => {

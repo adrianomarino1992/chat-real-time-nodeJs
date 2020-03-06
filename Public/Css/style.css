@@ -8,33 +8,30 @@ body{
     left: 0px;
     width: 100%;
     height: 10%;
-    border-bottom: 1px solid rgba(149, 149, 149, 0.605);
+    border-bottom: 1px solid rgba(129, 251, 6, 0.605);
     overflow: auto;
-    background-color:  rgba(223, 223, 223, 0.795);
+    background-color:  rgba(245, 241, 241, 0.905);
 }
 
-#header h2 {
-    font-size: 17px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    
-}
+
 
 #usuarios {
     position: absolute;
     top: 10%;
     right: 0px;
     width: 20%;
-    border-left: 1px solid rgba(149, 149, 149, 0.605);
+    border-left: 1px solid rgba(13, 243, 1, 0.605);
     height: 80%;
     padding: 10px;
     overflow: auto;
-    background-color:  rgba(223, 223, 223, 0.795);
+    background-color:  rgba(245, 241, 241, 0.905);
 }
 
 #usuarios h2 {
-    font-size: 12px;
+    font-size: 11px;
     text-align: left;
+    font-weight: 500;
+   
 }
 
 #footer {
@@ -44,7 +41,7 @@ body{
     height: calc(10% - 20px);
     width: 100%;
     border-top: 1px solid rgba(149, 149, 149, 0.605);
-    background-color:  rgba(223, 223, 223, 0.795);
+    background-color:  rgba(245, 241, 241, 0.905);
 }
 
 #footer input {
@@ -77,13 +74,15 @@ body{
 }
 
 .msg-card h2{
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
+    color: rgb(81, 81, 81);
+    
 }
 
 .msg-card h3{
-    font-size: 13px;
-    font-weight: 200;
+    font-size: 11px;
+    font-weight: 500;
 }
 
 #login-back{
@@ -93,13 +92,37 @@ body{
     width: 100%;
     height: 100%;
     background-color: rgba(63, 62, 62, 0.85);
+   
 }
 #login{
     position: absolute;
-    top : 50%;
+    top : 40%;
     left: 50%;
     width: 250px;
-    margin-left: -125px;
-    
+    margin-left: -125px;   
 
+}
+
+#logo{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 100px;
+}
+#logo-label{    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 200px;
+    font-size: 12px;
+}
+
+button{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-weight: 700;    
+    font-size: 12px;
+    color: rgba(18, 143, 22, 0.795);
 }
