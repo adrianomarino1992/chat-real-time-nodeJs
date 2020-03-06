@@ -33,8 +33,13 @@ exports.Start = (Http) => {
             
             let date = Util.Data();
 
-            for (let c of Clientes) {                
-                    c.Socket.emit('handshake-done', { enter: `${date.dia}/${date.mes} ${date.hora}:${date.minuto} -- ${msg.name} Conectado `, names: ListarNames(), msgs : []});                
+            let thisNames = ListarNames();
+
+            thisNames.push(cliente.Name);
+
+            for (let c of Clientes) {   
+                             
+                    c.Socket.emit('handshake-done', { enter: `${date.dia}/${date.mes} ${date.hora}:${date.minuto} -- ${msg.name} Conectado `, names: thisNames, msgs : []});                
             }
             Clientes.push(cliente);
 
