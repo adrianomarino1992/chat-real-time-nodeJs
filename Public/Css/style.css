@@ -128,3 +128,8 @@ button{
     font-size: 12px;
     color: rgba(18, 143, 22, 0.795);
 }
+
+.digitando{
+    color : green;
+    font-size : 11px;
+}

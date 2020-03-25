@@ -4,7 +4,7 @@ var NAME;
 
 $('#entrar').on('click', () => {
 
-    if ($('#user').val() == "789" && $('#password').val() == "123456789") {
+    if ($('#user').val() == "1" && $('#password').val() == "1") {
         let name = $('#name').val().trim();
         if (name == '') {
             alert('Nome vazio');
@@ -24,6 +24,7 @@ $('#entrar').on('click', () => {
 
 
 function StartMessageBox(msgs) {
+
 
     for (let m of msgs) {
 
@@ -57,12 +58,13 @@ function IO(name) {
             <h2>${msg.enter}</h2>           
     </div>
     `);
-
-        StartMessageBox(msg.msgs);
+        if(msg.msgs && msg.msgs.lenght > 0){       
+            StartMessageBox(msg.msgs);
+        }
 
         $('#usuarios').empty();
         for (let u of msg.names) {
-            $('#usuarios').append(`<h2>${u}</h2>`);
+            $('#usuarios').append(`<h2 name="${u}">${u}</h2>`);
         }
 
     });
@@ -77,6 +79,24 @@ function IO(name) {
     </div>
     `);
     });
+
+
+    socket.on('response-digitando', (msg) => {
+        
+        let cards_user = $('#usuarios h2');
+        for (let u of cards_user) {
+            
+            if ($(u).attr('name') == msg.name) {
+                $(u).empty();
+                if (msg.status == true) {
+                    $(u).append(msg.name + `<br> <span class="digitando"> digitando...
+                    </span>`);
+                } else {                    
+                    $(u).text(msg.name);
+                }
+            }
+        }
+    })
 }
 
 
@@ -94,8 +114,16 @@ $('#enviar').on('click', () => {
 })
 
 
-$('#msg').on('keypress',(event)=>{
-    if(event.keyCode === 13){
+$('#msg').on('keypress', (event) => {
+    if (event.keyCode === 13) {
         $('#enviar').click();
     }
+})
+
+
+$('#msg').on('focus', () => {
+    socket.emit('digitando', { name: NAME });
+})
+$('#msg').on('focusout', () => {
+    socket.emit('digitandOut', { name: NAME });
 })

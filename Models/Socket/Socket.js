@@ -68,6 +68,26 @@ exports.Start = (Http) => {
             console.log(name);
         })
 
+        Socket.on('digitando', (msg) => {
+            let user = msg.name;
+
+            for(let u of Clientes){
+                if(u.name != user){
+                    u.Socket.emit('response-digitando',{name : user , status : true })
+                }
+            }
+        })
+
+        Socket.on('digitandOut', (msg) => {
+            let user = msg.name;
+
+            for(let u of Clientes){
+                if(u.name != user){
+                    u.Socket.emit('response-digitando',{name : user , status : false })
+                }
+            }
+        })
+
         Socket.on('send-msg', (msg) => {
             
             let date = Util.Data();
