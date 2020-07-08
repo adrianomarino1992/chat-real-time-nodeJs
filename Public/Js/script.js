@@ -122,7 +122,10 @@ $('#msg').on('keypress', (event) => {
 
 
 $('#msg').on('focus', () => {
-    socket.emit('digitando', { name: NAME });
+    if($('#msg').val().lenght > 0){
+        socket.emit('digitando', { name: NAME });
+    }
+    
 })
 $('#msg').on('focusout', () => {
     socket.emit('digitandOut', { name: NAME });
