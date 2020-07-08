@@ -63,7 +63,7 @@ exports.Start = (Application, _path) => {
 
     Responses = [];
 
-    app.post('/request/api/v1', (request, response) => {
+    Application.App.post('/request/api/v1', (request, response) => {
 
         var body = request.body;
 
@@ -120,7 +120,7 @@ exports.Start = (Application, _path) => {
 
     })
 
-    app.post('/watcher/api/v1', (request, response) => {
+    Application.App.post('/watcher/api/v1', (request, response) => {
 
         let terminal = request.body.ID;
 
@@ -146,7 +146,7 @@ exports.Start = (Application, _path) => {
     })
 
 
-    app.post('/resp/api/v1', (request, response) => {
+    Application.App.post('/resp/api/v1', (request, response) => {
 
         var parsedUrl = url.parse(request.url, true);
 
@@ -169,7 +169,7 @@ exports.Start = (Application, _path) => {
 
 
 
-    app.post('/licence/result', (request, response) => {
+    Application.App.post('/licence/result', (request, response) => {
 
         var parsedUrl = url.parse(request.url, true);
 
