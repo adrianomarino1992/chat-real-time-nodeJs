@@ -3,7 +3,7 @@ let App = require('./Models/App');
 
 let Routers = require('./Rotas/Rotas');
 
-//App.Start(1234); // para testes na rede local'
-App.Start(process.env.PORT); // para deploy use apenas 'process.env.PORT'
+App.Start(1234); // para testes na rede local'
+//App.Start(process.env.PORT); // para deploy use apenas 'process.env.PORT'
 
 Routers.Start(App.App(),__dirname,Routers);

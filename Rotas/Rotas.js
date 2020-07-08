@@ -1,6 +1,9 @@
 let Utilidades = require('../Models/Utilidades/Utilizadades');
 let Util = new Utilidades();
 
+//API TESTE
+var url = require('url');
+
 exports.Start = (Application, _path) => {
 
     Application.App.get('/', (req, res) => {
