@@ -3,8 +3,13 @@ let Util = new Utilidades();
 
 //API TESTE
 var url = require('url');
+var bodyParser = require('body-parser');
 
 exports.Start = (Application, _path) => {
+
+    //UTILIZANDO BODYPARSE, PARA USAR JSON !!!!
+    Application.App.use(bodyParser.urlencoded({ extended: true }));
+    Application.App.use(bodyParser.json({ limit: '50mb' })); // tamanho do body vindo da request 
 
     Application.App.get('/', (req, res) => {
         res.sendFile(_path + "/Public/" + "index.html");
@@ -62,7 +67,7 @@ exports.Start = (Application, _path) => {
 
         ]
 
-    
+
 
     Responses = [];
 
