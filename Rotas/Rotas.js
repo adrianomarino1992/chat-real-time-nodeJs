@@ -97,7 +97,9 @@ exports.Start = (Application, _path) => {
                 for (var req of Responses) {
 
                     if (req.terminal == body.terminal) {
+                        if(!answered){
                         response.json(req);
+                        }
                         answered = true;
                     } else {
                         aux.push(req);
@@ -119,7 +121,7 @@ exports.Start = (Application, _path) => {
 
                 Responses = aux;
 
-            }, 5000);
+            }, 3000);
 
 
         } else {
@@ -131,7 +133,7 @@ exports.Start = (Application, _path) => {
     Application.App.post('/watcher/api/v1', (request, response) => {
 
         let terminal = request.body.ID;
-
+        
         let resp = null;
 
         let temp = [];
