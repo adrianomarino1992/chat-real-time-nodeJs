@@ -97,9 +97,9 @@ exports.Start = (Application, _path) => {
                 for (var req of Responses) {
 
                     if (req.terminal == body.terminal) {
-                        if(!answered){
+                        
                         response.json(req);
-                        }
+                        
                         answered = true;
                     } else {
                         aux.push(req);
@@ -121,7 +121,7 @@ exports.Start = (Application, _path) => {
 
                 Responses = aux;
 
-            }, 3000);
+            }, 5000);
 
 
         } else {
