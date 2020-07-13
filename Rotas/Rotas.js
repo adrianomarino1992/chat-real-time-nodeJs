@@ -114,7 +114,38 @@ exports.Start = (Application, _path) => {
                 }
 
                 if (!answered) {
-                    response.json([]);
+                    setTimeout(() => {
+                        var answered = false;
+                        var aux = [];
+        
+                        for (var req of Responses) {
+        
+                            if (req.terminal == body.terminal) {
+                                if(!answered){
+                                response.json(req);
+                                }
+                                answered = true;
+                            } else {
+                                aux.push(req);
+                            }
+                        }
+        
+                        let tAux = [];
+                        for (let p of Transporter) {
+                            if (p.terminal != body.terminal) {
+                                tAux.push(p)
+                            }
+                        }
+        
+                        if (!answered) {
+                            response.json([]);
+                        }
+        
+                        Transporter = tAux;
+        
+                        Responses = aux;
+        
+                    }, 3000);
                 }
 
                 Transporter = tAux;
