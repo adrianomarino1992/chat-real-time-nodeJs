@@ -1,9 +1,12 @@
 let Utilidades = require('../Models/Utilidades/Utilizadades');
 let Util = new Utilidades();
+var PG = require('../PgConnection/PG');
 
 //API TESTE
 var url = require('url');
 var bodyParser = require('body-parser');
+const { request } = require('http');
+const { response } = require('express');
 
 exports.Start = (Application, _path) => {
 
@@ -36,6 +39,7 @@ exports.Start = (Application, _path) => {
 
 
 
+    /*
     Application.App.get('/console', (req, res) => {
 
 
@@ -55,6 +59,8 @@ exports.Start = (Application, _path) => {
 
         res.end();
     })
+
+    */
 
 
     /* 
@@ -152,7 +158,7 @@ exports.Start = (Application, _path) => {
 
                 Responses = aux;
 
-            }, 3000);
+            }, 2000);
 
 
         } else {
@@ -230,6 +236,82 @@ exports.Start = (Application, _path) => {
         });
     })
 
+
+
+    Application.App.post('/forum/save',(request,response)=>{
+
+        var forum = request.body;
+
+        console.log(forum);
+
+        PG.ADDForum(forum.parameters.Post, done =>{
+            if(!done){
+                response.json({msg : "Falha na conexão", erro : true});
+                response.end();
+            }else{
+                response.json({msg : "Sua sujestão foi adicionada com sucesso na base de dados ", sucess : true});
+                response.end();
+            }
+        });
+
+    })
+
+    Application.App.post('/forum/like',(request,response)=>{
+
+        var forum = request.body;
+
+        console.log(forum.parameters);
+
+        PG.Like(forum.parameters, done =>{
+            if(!done){
+                response.json({msg : "Falha na conexão", erro : true});
+                response.end();
+            }else{
+                response.json({msg : "Like executado", sucess : true});
+                response.end();
+            }
+        });
+
+    })
+
+
+    Application.App.post('/forum/denuncia',(request,response)=>{
+
+        var forum = request.body;
+
+        console.log(forum.parameters);
+
+        PG.Denucnia(forum.parameters, done =>{
+            if(!done){
+                response.json({msg : "Falha na conexão", erro : true});
+                response.end();
+            }else{
+                response.json({msg : "Esta sujestão será analisada por um de nosso representantes.", sucess : true});
+                response.end();
+            }
+        });
+
+    })
+
+
+
+    Application.App.post('/forum/todas',(request,response)=>{
+
+        var forum = request.body;
+
+        console.log(forum);
+
+        PG.Posts(forum.parameters, result =>{
+            if(!result){
+                response.json({msg : "Nada foi encontrado", erro : true});
+                response.end();
+            }else{
+                response.json({result, sucess : true});
+                response.end();
+            }
+        });
+
+    })
 
 
 }
