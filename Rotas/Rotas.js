@@ -2,11 +2,14 @@ let Utilidades = require('../Models/Utilidades/Utilizadades');
 let Util = new Utilidades();
 var PG = require('../PgConnection/PG');
 
-//API TESTE
+
 var url = require('url');
+
 var bodyParser = require('body-parser');
-const { request } = require('http');
-const { response } = require('express');
+
+
+
+var CLIENTES = [];
 
 exports.Start = (Application, _path) => {
 
@@ -24,7 +27,7 @@ exports.Start = (Application, _path) => {
 
     Application.App.get('/socket.io.js', function (req, res) {
         res.sendFile(_path + "/Public/" + "socket.io.js");
-    });
+    }); 
 
     Application.App.get('/script.js', function (req, res) {
         res.sendFile(_path + "/Public/Js/" + "script.js");
@@ -37,131 +40,133 @@ exports.Start = (Application, _path) => {
         res.sendFile(_path + "/Public/Img/" + "logo.png");
     });
 
-
-
-    /*
-    Application.App.get('/console', (req, res) => {
-
-
-        if (Application.Socket.length > 0) {
-
-
-            for (let cliente of Application.Socket) {
-
-                cliente.emit('close', {
-
-                    exec: `window.close();`
-
-                });
-
-            }
-        }
-
-        res.end();
-    })
-
-    */
-
-
     /* 
     API TEMPORARIA 
     */
 
 
-    var Transporter =
-        [
 
-        ]
+    var GetTudo = () => {
 
+        PG.Init(result => {
+            if (!result) {
+                console.log("Nada carregado")
+            } else {
+                CLIENTES = result;
+            }
+        });
+    }
 
+    GetTudo();
 
-    Responses = [];
+    var Transporter = [];
+
+    var Responses = [];
 
     Application.App.post('/request/api/v1', (request, response) => {
 
         var body = request.body;
 
-        body["id"] = new Date().getTime();
+        let exec = false;
 
-        var go = true;
+        for (let c of CLIENTES) {
+            if (c.text_id_client == body.terminal) {
+                let hj = new Date();
+                let lic = new Date(c.date_dt_limit);
 
-        for (let f of Transporter) {
-            if (f.terminal == body.terminal) {
-                response.json([]);
-                go = false;
+                if (hj < lic) {
+                    exec = true;
+                }
             }
         }
 
-        if (go) {
+        if (exec) {
 
-            Transporter.push(body);
+            body["id"] = new Date().getTime();
 
-            setTimeout(() => {
-                var answered = false;
-                var aux = [];
+            var go = true;
 
-                for (var req of Responses) {
-
-                    if (req.terminal == body.terminal) {
-                        if(!answered){
-                        response.json(req);
-                        }
-                        answered = true;
-                    } else {
-                        aux.push(req);
-                    }
+            for (let f of Transporter) {
+                if (f.terminal == body.terminal) {
+                    response.json([]);
+                    go = false;
                 }
+            }
 
-                let tAux = [];
-                for (let p of Transporter) {
-                    if (p.terminal != body.terminal) {
-                        tAux.push(p)
-                    }
-                }
+            if (go) {
 
-                if (!answered) {
-                    setTimeout(() => {
-                        var answered = false;
-                        var aux = [];
-        
-                        for (var req of Responses) {
-        
-                            if (req.terminal == body.terminal) {
-                                if(!answered){
+                Transporter.push(body);
+
+                setTimeout(() => {
+                    var answered = false;
+                    var aux = [];
+
+                    for (var req of Responses) {
+
+                        if (req.terminal == body.terminal) {
+                            if (!answered) {
                                 response.json(req);
+                            }
+                            answered = true;
+                        } else {
+                            aux.push(req);
+                        }
+                    }
+
+                    let tAux = [];
+                    for (let p of Transporter) {
+                        if (p.terminal != body.terminal) {
+                            tAux.push(p)
+                        }
+                    }
+
+                    if (!answered) {
+                        setTimeout(() => {
+                            var answered = false;
+                            var aux = [];
+
+                            for (var req of Responses) {
+
+                                if (req.terminal == body.terminal) {
+                                    if (!answered) {
+                                        response.json(req);
+                                    }
+                                    answered = true;
+                                } else {
+                                    aux.push(req);
                                 }
-                                answered = true;
-                            } else {
-                                aux.push(req);
                             }
-                        }
-        
-                        let tAux = [];
-                        for (let p of Transporter) {
-                            if (p.terminal != body.terminal) {
-                                tAux.push(p)
+
+                            let tAux = [];
+                            for (let p of Transporter) {
+                                if (p.terminal != body.terminal) {
+                                    tAux.push(p)
+                                }
                             }
-                        }
-        
-                        if (!answered) {
-                            response.json([]);
-                        }
-        
-                        Transporter = tAux;
-        
-                        Responses = aux;
-        
-                    }, 3000);
-                }
 
-                Transporter = tAux;
+                            if (!answered) {
+                                response.json([]);
+                            }
 
-                Responses = aux;
+                            Transporter = tAux;
 
-            }, 2000);
+                            Responses = aux;
+
+                        }, 3000);
+                    }
+
+                    Transporter = tAux;
+
+                    Responses = aux;
+
+                }, 2000);
 
 
+            } else {
+                response.end();
+            }
         } else {
+            response.json({ Licenca: false });
             response.end();
         }
 
@@ -170,7 +175,7 @@ exports.Start = (Application, _path) => {
     Application.App.post('/watcher/api/v1', (request, response) => {
 
         let terminal = request.body.ID;
-        
+
         let resp = null;
 
         let temp = [];
@@ -184,7 +189,7 @@ exports.Start = (Application, _path) => {
             }
         }
 
-        console.log("monitorando : " + terminal);
+        //console.log("monitorando : " + terminal);
 
         Transporter = temp;
 
@@ -230,44 +235,69 @@ exports.Start = (Application, _path) => {
         
         */
 
-        response.json({
+        let resp = {
             limit: '2020-10-10',
             status: 'Online'
-        });
+        }
+
+        for (let c of CLIENTES) {
+            if (c.text_id_client == id) {
+                let hj = new Date();
+                let lic = new Date(c.date_dt_limit);
+
+                if (hj < lic) {
+                    resp = {
+                        limit: c.date_dt_limit,
+                        status: 'Online'
+                    }
+                } else {
+                    resp = {
+                        limit: c.date_dt_limit,
+                        status: 'Offline'
+                    }
+                }
+            }
+
+        }
+
+        response.json(resp);
+        response.end();
+
+
     })
 
 
 
-    Application.App.post('/forum/save',(request,response)=>{
+    Application.App.post('/forum/save', (request, response) => {
 
         var forum = request.body;
 
         console.log(forum);
 
-        PG.ADDForum(forum.parameters.Post, done =>{
-            if(!done){
-                response.json({msg : "Falha na conexão", erro : true});
+        PG.ADDForum(forum.parameters.Post, done => {
+            if (!done) {
+                response.json({ msg: "Falha na conexão", erro: true });
                 response.end();
-            }else{
-                response.json({msg : "Sua sujestão foi adicionada com sucesso na base de dados ", sucess : true});
+            } else {
+                response.json({ msg: "Sua sujestão foi adicionada com sucesso na base de dados ", sucess: true });
                 response.end();
             }
         });
 
     })
 
-    Application.App.post('/forum/like',(request,response)=>{
+    Application.App.post('/forum/like', (request, response) => {
 
         var forum = request.body;
 
         console.log(forum.parameters);
 
-        PG.Like(forum.parameters, done =>{
-            if(!done){
-                response.json({msg : "Falha na conexão", erro : true});
+        PG.Like(forum.parameters, done => {
+            if (!done) {
+                response.json({ msg: "Falha na conexão", erro: true });
                 response.end();
-            }else{
-                response.json({msg : "Like executado", sucess : true});
+            } else {
+                response.json({ msg: "Like executado", sucess: true });
                 response.end();
             }
         });
@@ -275,18 +305,18 @@ exports.Start = (Application, _path) => {
     })
 
 
-    Application.App.post('/forum/denuncia',(request,response)=>{
+    Application.App.post('/forum/denuncia', (request, response) => {
 
         var forum = request.body;
 
         console.log(forum.parameters);
 
-        PG.Denucnia(forum.parameters, done =>{
-            if(!done){
-                response.json({msg : "Falha na conexão", erro : true});
+        PG.Denucnia(forum.parameters, done => {
+            if (!done) {
+                response.json({ msg: "Falha na conexão", erro: true });
                 response.end();
-            }else{
-                response.json({msg : "Esta sujestão será analisada por um de nosso representantes.", sucess : true});
+            } else {
+                response.json({ msg: "Esta sujestão será analisada por um de nosso representantes.", sucess: true });
                 response.end();
             }
         });
@@ -295,23 +325,131 @@ exports.Start = (Application, _path) => {
 
 
 
-    Application.App.post('/forum/todas',(request,response)=>{
+    Application.App.post('/forum/todas', (request, response) => {
 
         var forum = request.body;
 
-        console.log(forum);
+        PG.Posts(forum.parameters, result => {
+            if (!result) {
 
-        PG.Posts(forum.parameters, result =>{
-            if(!result){
-                response.json({msg : "Nada foi encontrado", erro : true});
+                response.json({ msg: "Nada foi encontrado", erro: true });
                 response.end();
-            }else{
-                response.json({result, sucess : true});
+            } else {
+                response.json({ result, sucess: true });
                 response.end();
             }
         });
 
     })
+
+
+
+    Application.App.get('/forum/todas', (request, response) => {
+
+        /*
+
+        liberar o acesso de outros servidores
+
+        */
+        response.setHeader("Access-Control-Allow-Origin", "*");
+
+        PG.Posts({
+            Filtro: "order by fo.date_dt_data desc, nlikes desc ",
+            GET: true
+        }, result => {
+            if (!result) {
+
+                response.json({ msg: "Nada foi encontrado", erro: true });
+                response.end();
+            } else {
+                response.json({ result, sucess: true });
+                response.end();
+            }
+        });
+
+    })
+
+
+    Application.App.get('/forum/delete', (request, response) => {
+
+        /*
+
+        liberar o acesso de outros servidores
+
+        */
+        response.setHeader("Access-Control-Allow-Origin", "*");
+
+
+        var parsedUrl = url.parse(request.url, true);
+
+        var query = parsedUrl.query;
+
+        let id = query.id;
+
+        PG.DeletePost(id, result => {
+            if (!result) {
+                response.json({ msg: "Erro no banco de dados", erro: true });
+                response.end();
+            } else {
+                response.json({ msg : "Sujestão removida da base de dados.", sucess: true });
+                response.end();
+            }
+        });
+
+    })
+
+
+    Application.App.get('/forum/alter', (request, response) => {
+
+        /*
+
+        liberar o acesso de outros servidores
+
+        */
+        response.setHeader("Access-Control-Allow-Origin", "*");
+
+
+        var parsedUrl = url.parse(request.url, true);
+
+        var query = parsedUrl.query;
+
+        let id = query.id;
+        let value = query.value;
+
+        PG.AlteraPost(id,value, result => {
+            if (!result) {
+                response.json({ msg: "Erro no banco de dados", erro: true });
+                response.end();
+            } else {
+                response.json({ msg : "Sujestão atualizada da base de dados.", sucess: true });
+                response.end();
+            }
+        });
+
+    })
+
+
+
+    Application.App.post('/client/save', (request, response) => {
+
+        var cliente = request.body;
+
+        PG.Clients(cliente, result => {
+            if (!result) {
+                response.json({ erro: true });
+                response.end();
+            } else {
+                response.json({ sucess: true });
+                response.end();
+                GetTudo();
+            }
+        });
+
+    })
+
+
+
+
 
 
 }

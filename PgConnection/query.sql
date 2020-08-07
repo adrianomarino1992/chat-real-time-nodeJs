@@ -27,6 +27,13 @@ create table tb_denuncia(
     date_dt_denuncia date
 )
 
+drop table if exists tb_clientes;
+
+create table tb_clientes( 
+    text_id_client text,
+    date_dt_limit date
+)
+
 
 drop function if exists addlike;
 
@@ -63,3 +70,38 @@ declare
 END;
 
 $msg$ LANGUAGE plpgsql;	
+
+
+drop function is exists updatecliente;
+
+create or replace function updatecliente(idcliente text, limitecliente text)
+
+returns text as $msg$
+
+declare 
+
+	temcliente int;
+	msg text;
+	
+	begin
+	
+	select count(*) into temcliente from tb_clientes where text_id_client = idcliente;
+	
+	if temcliente > 0 then
+	
+	delete from tb_clientes where text_id_client = idcliente;
+	
+	msg := 'Cliente atualizado';
+	
+	end if;
+	
+	insert into tb_clientes values (idcliente,date(limitecliente));
+	
+	msg := 'Cliente cadastrado';
+	
+	return msg;
+	
+	end;
+	
+	$msg$ LANGUAGE plpgsql;	
+	

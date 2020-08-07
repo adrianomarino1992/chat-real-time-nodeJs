@@ -3,35 +3,42 @@ body{
 }
 
 #header {
+    background-color: cadetblue;
     position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 65px;
-    border-bottom: 1px solid rgba(129, 251, 6, 0.605);
+    height: 95px;
     overflow: auto;
-    background-color:  rgba(245, 241, 241, 0.905);
+    background-image: linear-gradient(to top left, rgba(250, 250, 250, 0.925), rgb(219, 227, 243));    
+    z-index: 50;
 }
 
+
+h2{
+    font-weight: 400;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 
 #usuarios {
     position: absolute;
-    top: 65px;
+    top: 95px;
     right: 0px;
-    width: 20%;
-    border-left: 1px solid rgba(13, 243, 1, 0.605);
-    height: calc(90% - 65px);
+    width: 20%;    
+    height: calc(90% - 95px);
     padding: 10px;
     overflow: auto;
-    background-color:  rgba(245, 241, 241, 0.905);
+    background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.925), rgb(241, 241, 241));
+    
 }
 
 #usuarios h2 {
-    font-size: 11px;
+    font-size: 15px;
     text-align: left;
-    font-weight: 500;
-   
+    font-weight: 600;
+   color: rgb(88, 88, 88);
 }
 
 #footer {
@@ -39,9 +46,8 @@ body{
     bottom: 0px;
     left: 0px;
     height: calc(10% - 20px);
-    width: 100%;
-    border-top: 1px solid rgba(149, 149, 149, 0.605);
-    background-color:  rgb(245, 241, 241);
+    width: 100%;    
+    background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.925), rgb(241, 241, 241));
     z-index: 20;
 }
 
@@ -54,14 +60,14 @@ body{
 
 #enviar {
     position: absolute;
-    right: 2%;
-    top: 30%;
+    right: 0%;
+    top: 10%;
     width: 20%;
 }
 
 #msg-box {
     position: absolute;
-    top: 65px;
+    top: 95px;
     left: 0%;
     width: calc(80% - 40px);
     padding: 10px;
@@ -70,13 +76,17 @@ body{
 }
 
 .msg-card {
-    width: 80%;
-    border-bottom: 1px solid rgba(149, 149, 149, 0.605);
+    padding: 10px;
+    margin-left:1%;
+    width: 95%;
+    border-bottom: 2px solid rgba(149, 149, 149, 0.339);
+    
+   
 }
 
 .msg-card h2{
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     color: rgb(81, 81, 81);
     
 }
@@ -92,33 +102,59 @@ body{
     left: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgba(63, 62, 62, 0.85);
-    z-index: 21;
-   
+    background-color: rgba(63, 62, 62, 0.537);
+    z-index: 52;
+    display: block;
 }
 #login{
     position: absolute;
-    top : 40%;
+    top : 30%;
     left: 50%;
-    width: 250px;
-    margin-left: -125px;   
+    width: 230px;
+    margin-left: -125px;
+    background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.925), rgba(234, 236, 246, 0.891));   
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489);   
 
+}
+
+input{
+    width: calc(100% - 10px);
+    border: none;
+    height: 25px;
+    outline: none;
+    margin: 5px;
+    background-color: rgba(235, 238, 241, 0.693);
+    box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489) ;
+}
+
+button{
+    width: 100px;
+    border: none;
+    height: 25px;
+    outline: none;
+    margin: 5px;
+    background-image: linear-gradient(to top left, rgba(209, 207, 207, 0.925), rgba(185, 193, 233, 0.891)); 
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489) ;
+    
 }
 
 #logo{
     position: absolute;
-    top: 0px;
+    top: 10px;
     left: 10px;
-    width: 100px;
+    width: 130px;
 }
-#logo-label{    
+#logo-label{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     position: absolute;
     top: 10px;
     right: 10px;
     width: 200px;
-    font-size: 12px;
+    font-size: 20px;
+    color: rgb(131, 131, 131);
 }
 
 button{
