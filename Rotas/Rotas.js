@@ -106,6 +106,7 @@ exports.Start = (Application, _path) => {
                         if (req.terminal == body.terminal) {
                             if (!answered) {
                                 response.json(req);
+                                response.end();
                             }
                             answered = true;
                         } else {
@@ -130,6 +131,7 @@ exports.Start = (Application, _path) => {
                                 if (req.terminal == body.terminal) {
                                     if (!answered) {
                                         response.json(req);
+                                        response.end();
                                     }
                                     answered = true;
                                 } else {
@@ -146,6 +148,7 @@ exports.Start = (Application, _path) => {
 
                             if (!answered) {
                                 response.json([]);
+                                response.end();
                             }
 
                             Transporter = tAux;
@@ -265,7 +268,7 @@ exports.Start = (Application, _path) => {
 
 
     })
-
+    
 
 
     Application.App.post('/forum/save', (request, response) => {

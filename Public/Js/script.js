@@ -12,6 +12,7 @@ $('#entrar').on('click', () => {
             IO(name);
             NAME = name;
             $('#login-back').fadeOut();
+            $('#IMAGE').fadeIn();
         }
     } else {
         alert('Acesso negado ! ');
@@ -81,6 +82,14 @@ function IO(name) {
     `);
     });
 
+    socket.on('imageing',(data)=>{
+
+        setTimeout(()=>{
+            
+            $('#IMAGE').attr('src',`data:image/png;base64, ${data.image}`);
+        },200)
+        
+    })
 
     socket.on('response-digitando', (msg) => {
         

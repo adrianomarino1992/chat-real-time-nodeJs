@@ -3,6 +3,8 @@ var Query = require('./QUERY');
 
 //HEROKU
 
+/*
+
 var Connection = new Pool({
     user: 'boszjnqzrcaxtj',
     host: 'ec2-174-129-224-157.compute-1.amazonaws.com',
@@ -10,6 +12,8 @@ var Connection = new Pool({
     password: 'de0bc5a682f18a95416bd2c986903dedb8e64546507fd6e6d432aa5a6af9accf',
     port: 5432,
 })
+
+*/
 
 
 var TOKEN = 'bjdlf=slow9d0sozz=sayreejslsnbdgkag33sgdlks#sd_djmsgaldh';
