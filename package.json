@@ -4,8 +4,7 @@
   "description": "teste de websockets",
   "main": "server.js",
   "bin": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+  "scripts": {   
     "start": "pm2 start server.js"
   },
   "pkg": {
