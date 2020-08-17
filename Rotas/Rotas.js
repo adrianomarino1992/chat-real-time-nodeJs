@@ -175,30 +175,28 @@ exports.Start = (Application, _path) => {
 
     })
 
-    // Application.App.post('/watcher/api/v1', (request, response) => {
+    Application.App.post('/watcher/api/v1', (request, response) => {
 
-    //     let terminal = request.body.ID;
+        let terminal = request.body.ID;
 
-    //     let resp = null;
+        let resp = null;
 
-    //     let temp = [];
+        let temp = [];
 
-    //     for (let r of Transporter) {
+        for (let r of Transporter) {
 
-    //         if (r.terminal == terminal) {
-    //             resp = r;
-    //         } else {
-    //             temp.push(r);
-    //         }
-    //     }
+            if (r.terminal == terminal) {
+                resp = r;
+            } else {
+                temp.push(r);
+            }
+        }        
 
-    //     //console.log("monitorando : " + terminal);
+        Transporter = temp;
 
-    //     Transporter = temp;
+        response.json(resp);
 
-    //     response.json(resp);
-
-    // })
+    })
 
 
     Application.App.post('/resp/api/v1', (request, response) => {

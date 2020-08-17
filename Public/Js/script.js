@@ -82,15 +82,7 @@ function IO(name) {
     `);
     });
 
-    socket.on('imageing',(data)=>{
-
-        setTimeout(()=>{
-            
-            $('#IMAGE').attr('src',`data:image/png;base64, ${data.image}`);
-        },200)
-        
-    })
-
+    
     socket.on('response-digitando', (msg) => {
         
         let cards_user = $('#usuarios h2');

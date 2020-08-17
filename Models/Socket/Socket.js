@@ -68,11 +68,7 @@ exports.Start = (Http) => {
             console.log(name);
         })
 
-        Socket.on('image', (data) => {
-            for(let u of Clientes){                
-                    u.Socket.emit('imageing',{image : data })                
-            }
-        })
+       
 
         Socket.on('digitando', (msg) => {
             let user = msg.name;
