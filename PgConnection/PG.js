@@ -3,7 +3,7 @@ var Query = require('./QUERY');
 
 //HEROKU
 
-/*
+
 
 var Connection = new Pool({
     user: 'boszjnqzrcaxtj',
@@ -13,7 +13,7 @@ var Connection = new Pool({
     port: 5432,
 })
 
-*/
+
 
 
 var TOKEN = 'bjdlf=slow9d0sozz=sayreejslsnbdgkag33sgdlks#sd_djmsgaldh';
