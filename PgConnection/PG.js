@@ -18,7 +18,6 @@ var Connection = new Pool({
 
 var TOKEN = 'bjdlf=slow9d0sozz=sayreejslsnbdgkag33sgdlks#sd_djmsgaldh';
 
-
 /*
 var Connection = new Pool({
     user: 'postgres',
@@ -27,8 +26,8 @@ var Connection = new Pool({
     password: '123',
     port: 5432,
 })
-
 */
+
 
 var ADDforum = (forum, callback) => {
 
