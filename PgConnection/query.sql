@@ -9,7 +9,7 @@ create table tb_forum (
     text_id_autor text,    
     text_telefone_autor text,
     text_status text
-) 
+);
 
 drop table if exists tb_likes;
 
@@ -17,7 +17,7 @@ create table tb_likes(
     int_id_like serial not null primary key,
     int_id_forum int,
     text_id_client text
-)
+);
 
 drop table if exists tb_denuncia;
 
@@ -25,14 +25,14 @@ create table tb_denuncia(
     int_id_forum int,
     text_id_client text,
     date_dt_denuncia date
-)
+);
 
 drop table if exists tb_clientes;
 
 create table tb_clientes( 
     text_id_client text,
     date_dt_limit date
-)
+);
 
 
 drop function if exists addlike;

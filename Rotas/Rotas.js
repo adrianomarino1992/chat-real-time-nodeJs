@@ -17,28 +17,28 @@ exports.Start = (Application, _path) => {
     Application.App.use(bodyParser.urlencoded({ extended: true }));
     Application.App.use(bodyParser.json({ limit: '50mb' })); // tamanho do body vindo da request 
 
-    Application.App.get('/', (req, res) => {
-        res.sendFile(_path + "/Public/" + "index.html");
-    })
+    // Application.App.get('/', (req, res) => {
+    //     res.sendFile(_path + "/Public/" + "index.html");
+    // })
 
-    Application.App.get('/style.css', function (req, res) {
-        res.sendFile(_path + "/Public/Css/" + "style.css");
-    });
+    // Application.App.get('/style.css', function (req, res) {
+    //     res.sendFile(_path + "/Public/Css/" + "style.css");
+    // });
 
-    Application.App.get('/socket.io.js', function (req, res) {
-        res.sendFile(_path + "/Public/" + "socket.io.js");
-    }); 
+    // Application.App.get('/socket.io.js', function (req, res) {
+    //     res.sendFile(_path + "/Public/" + "socket.io.js");
+    // });
 
-    Application.App.get('/script.js', function (req, res) {
-        res.sendFile(_path + "/Public/Js/" + "script.js");
-    });
+    // Application.App.get('/script.js', function (req, res) {
+    //     res.sendFile(_path + "/Public/Js/" + "script.js");
+    // });
 
-    Application.App.get('/jquery.js', function (req, res) {
-        res.sendFile(_path + "/Public/jquery/" + "jquery3.4.1.js");
-    });
-    Application.App.get('/logo.png', function (req, res) {
-        res.sendFile(_path + "/Public/Img/" + "logo.png");
-    });
+    // Application.App.get('/jquery.js', function (req, res) {
+    //     res.sendFile(_path + "/Public/jquery/" + "jquery3.4.1.js");
+    // });
+    // Application.App.get('/logo.png', function (req, res) {
+    //     res.sendFile(_path + "/Public/Img/" + "logo.png");
+    // });
 
     /* 
     API TEMPORARIA 
@@ -190,7 +190,7 @@ exports.Start = (Application, _path) => {
             } else {
                 temp.push(r);
             }
-        }        
+        }
 
         Transporter = temp;
 
@@ -266,7 +266,7 @@ exports.Start = (Application, _path) => {
 
 
     })
-    
+
 
 
     Application.App.post('/forum/save', (request, response) => {
@@ -392,7 +392,7 @@ exports.Start = (Application, _path) => {
                 response.json({ msg: "Erro no banco de dados", erro: true });
                 response.end();
             } else {
-                response.json({ msg : "Sujestão removida da base de dados.", sucess: true });
+                response.json({ msg: "Sujestão removida da base de dados.", sucess: true });
                 response.end();
             }
         });
@@ -417,12 +417,12 @@ exports.Start = (Application, _path) => {
         let id = query.id;
         let value = query.value;
 
-        PG.AlteraPost(id,value, result => {
+        PG.AlteraPost(id, value, result => {
             if (!result) {
                 response.json({ msg: "Erro no banco de dados", erro: true });
                 response.end();
             } else {
-                response.json({ msg : "Sujestão atualizada da base de dados.", sucess: true });
+                response.json({ msg: "Sujestão atualizada da base de dados.", sucess: true });
                 response.end();
             }
         });

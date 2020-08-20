@@ -5,17 +5,8 @@
   "main": "server.js",
   "bin": "server.js",
   "scripts": {   
-    "start": "pm2 start server.js"
-  },
-  "pkg": {
-    "assets": [
-      "Models/**/*",
-      "Utilidades/**/*",
-      "Rotas/**/*"
-    ],
-    "targets": [
-      "node10"
-    ]
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "adriano marino balera",
   "license": "ISC",
