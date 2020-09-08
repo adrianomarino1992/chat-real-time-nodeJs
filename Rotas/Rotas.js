@@ -2,12 +2,9 @@ let Utilidades = require('../Models/Utilidades/Utilizadades');
 let Util = new Utilidades();
 var PG = require('../PgConnection/PG');
 
-
 var url = require('url');
 
 var bodyParser = require('body-parser');
-
-
 
 var CLIENTES = [];
 
@@ -17,34 +14,37 @@ exports.Start = (Application, _path) => {
     Application.App.use(bodyParser.urlencoded({ extended: true }));
     Application.App.use(bodyParser.json({ limit: '50mb' })); // tamanho do body vindo da request 
 
-    // Application.App.get('/', (req, res) => {
-    //     res.sendFile(_path + "/Public/" + "index.html");
-    // })
-
-    // Application.App.get('/style.css', function (req, res) {
-    //     res.sendFile(_path + "/Public/Css/" + "style.css");
-    // });
-
-    // Application.App.get('/socket.io.js', function (req, res) {
-    //     res.sendFile(_path + "/Public/" + "socket.io.js");
-    // });
-
-    // Application.App.get('/script.js', function (req, res) {
-    //     res.sendFile(_path + "/Public/Js/" + "script.js");
-    // });
-
-    // Application.App.get('/jquery.js', function (req, res) {
-    //     res.sendFile(_path + "/Public/jquery/" + "jquery3.4.1.js");
-    // });
-    // Application.App.get('/logo.png', function (req, res) {
-    //     res.sendFile(_path + "/Public/Img/" + "logo.png");
-    // });
-
-    /* 
-    API TEMPORARIA 
+    /*
+    Chat está gerando error h10 no heroku
     */
 
+    
+    /*
+    Application.App.get('/', (req, res) => {
+        res.sendFile(_path + "/Public/" + "index.html");
+    })
 
+    Application.App.get('/style.css', function (req, res) {
+        res.sendFile(_path + "/Public/Css/" + "style.css");
+    });
+
+    Application.App.get('/socket.io.js', function (req, res) {
+        res.sendFile(_path + "/Public/" + "socket.io.js");
+    });
+
+    Application.App.get('/script.js', function (req, res) {
+        res.sendFile(_path + "/Public/Js/" + "script.js");
+    });
+
+    Application.App.get('/jquery.js', function (req, res) {
+        res.sendFile(_path + "/Public/jquery/" + "jquery3.4.1.js");
+    });
+    Application.App.get('/logo.png', function (req, res) {
+        res.sendFile(_path + "/Public/Img/" + "logo.png");
+    });
+
+    */    
+    
 
     var GetTudo = () => {
 
@@ -147,22 +147,118 @@ exports.Start = (Application, _path) => {
                             }
 
                             if (!answered) {
-                                response.json([]);
-                                response.end();
+                                setTimeout(() => {
+                                    var answered = false;
+                                    var aux = [];
+        
+                                    for (var req of Responses) {
+        
+                                        if (req.terminal == body.terminal) {
+                                            if (!answered) {
+                                                response.json(req);
+                                                response.end();
+                                            }
+                                            answered = true;
+                                        } else {
+                                            aux.push(req);
+                                        }
+                                    }
+        
+                                    let tAux = [];
+                                    for (let p of Transporter) {
+                                        if (p.terminal != body.terminal) {
+                                            tAux.push(p)
+                                        }
+                                    }
+        
+                                    if (!answered) {
+                                        setTimeout(() => {
+                                            var answered = false;
+                                            var aux = [];
+                
+                                            for (var req of Responses) {
+                
+                                                if (req.terminal == body.terminal) {
+                                                    if (!answered) {
+                                                        response.json(req);
+                                                        response.end();
+                                                    }
+                                                    answered = true;
+                                                } else {
+                                                    aux.push(req);
+                                                }
+                                            }
+                
+                                            let tAux = [];
+                                            for (let p of Transporter) {
+                                                if (p.terminal != body.terminal) {
+                                                    tAux.push(p)
+                                                }
+                                            }
+                
+                                            if (!answered) {
+                                                setTimeout(() => {
+                                                    var answered = false;
+                                                    var aux = [];
+                        
+                                                    for (var req of Responses) {
+                        
+                                                        if (req.terminal == body.terminal) {
+                                                            if (!answered) {
+                                                                response.json(req);
+                                                                response.end();
+                                                            }
+                                                            answered = true;
+                                                        } else {
+                                                            aux.push(req);
+                                                        }
+                                                    }
+                        
+                                                    let tAux = [];
+                                                    for (let p of Transporter) {
+                                                        if (p.terminal != body.terminal) {
+                                                            tAux.push(p)
+                                                        }
+                                                    }
+                        
+                                                    if (!answered) {
+                                                        response.json([]);
+                                                        response.end();
+                                                    }
+                        
+                                                    Transporter = tAux;
+                        
+                                                    Responses = aux;
+                        
+                                                }, 3000);
+                                            }
+                
+                                            Transporter = tAux;
+                
+                                            Responses = aux;
+                
+                                        }, 1000);
+                                    }
+        
+                                    Transporter = tAux;
+        
+                                    Responses = aux;
+        
+                                }, 1000);
                             }
 
                             Transporter = tAux;
 
                             Responses = aux;
 
-                        }, 3000);
+                        }, 1000);
                     }
 
                     Transporter = tAux;
 
                     Responses = aux;
 
-                }, 2000);
+                }, 1000);
 
 
             } else {
