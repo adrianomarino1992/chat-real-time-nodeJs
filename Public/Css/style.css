@@ -10,8 +10,11 @@ body{
     width: 100%;
     height: 95px;
     overflow: auto;
-    background-image: linear-gradient(to top left, rgba(250, 250, 250, 0.925), rgb(219, 227, 243));    
+    background-image: linear-gradient(to top left, rgba(255, 8, 251, 0.925),rgba(178, 4, 175, 0.925), rgb(32, 114, 255));    
     z-index: 50;
+    box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489);
+    overflow: hidden;
+
 }
 
 
@@ -30,7 +33,7 @@ h2{
     height: calc(90% - 95px);
     padding: 10px;
     overflow: auto;
-    background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.925), rgb(241, 241, 241));
+    background-image: linear-gradient(to top left, rgba(224, 224, 224, 0.734), rgba(255, 255, 255, 0.66));
     
 }
 
@@ -38,7 +41,24 @@ h2{
     font-size: 15px;
     text-align: left;
     font-weight: 600;
-   color: rgb(88, 88, 88);
+   color: rgba(88, 88, 88, 0.648);
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   text-align: left;
+   font-weight: 700;    
+   font-size: 15px;
+}
+
+a{
+    color: rgb(255, 255, 255);
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   text-align: left;
+   font-weight: 700;    
+   font-size: 10px;
+   text-align: center;
+   position: absolute;
+   bottom: 10px;
+   left: 0px;
+   width: 100%;
 }
 
 #footer {
@@ -47,7 +67,7 @@ h2{
     left: 0px;
     height: calc(10% - 20px);
     width: 100%;    
-    background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.925), rgb(241, 241, 241));
+    background-image: linear-gradient(to top left, rgb(255, 255, 255), rgba(237, 235, 235, 0.452));
     z-index: 20;
 }
 
@@ -79,21 +99,28 @@ h2{
     padding: 10px;
     margin-left:1%;
     width: 95%;
-    border-bottom: 2px solid rgba(149, 149, 149, 0.339);
+    border-bottom: 2px solid rgba(198, 39, 238, 0.046);
     
    
 }
 
 .msg-card h2{
-    font-size: 14px;
-    font-weight: 500;
-    color: rgb(81, 81, 81);
+   
+    color : rgba(214, 37, 241, 0.622);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    font-weight: 700;    
+    font-size: 12px;
+   
     
 }
 
-.msg-card h3{
-    font-size: 11px;
-    font-weight: 500;
+.msg-card h3{    
+    color: rgba(113, 8, 155, 0.655);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    font-weight: 700;    
+    font-size: 15px;
 }
 
 #login-back{
@@ -115,37 +142,53 @@ h2{
     background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.925), rgba(234, 236, 246, 0.891));   
     padding: 10px;
     box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489);   
+    border-radius: 20px;
+    height: 350px;
 
 }
 
 input{
     width: calc(100% - 10px);
     border: none;
-    height: 25px;
+    height: 40px;
     outline: none;
     margin: 5px;
-    background-color: rgba(235, 238, 241, 0.693);
-    box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489) ;
+    background-color: rgba(222, 223, 223, 0.297);
+    box-shadow: 1px 1px 1px 1px rgba(204, 204, 204, 0.539) ;
+    border-radius: 20px;
 }
 
+#msg{
+    height: calc(100% - 15px);
+    max-height: 45px;
+}
 button{
     width: 100px;
     border: none;
-    height: 25px;
+    height: 40px;
     outline: none;
     margin: 5px;
-    background-image: linear-gradient(to top left, rgba(209, 207, 207, 0.925), rgba(185, 193, 233, 0.891)); 
+    background-image: linear-gradient(to top left, rgba(255, 8, 251, 0.925),rgba(178, 4, 175, 0.925), rgb(32, 114, 255));    
     cursor: pointer;
-    box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489) ;
+    box-shadow: 2px 2px 2px 2px rgba(180, 179, 178, 0.489);
+    border-radius: 20px;
     
 }
 
 #logo{
     position: absolute;
-    top: 10px;
+    top: 0px;
     left: 10px;
     width: 130px;
 }
+
+#menu{
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    width: 25px;
+}
+
 #logo-label{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
@@ -157,16 +200,26 @@ button{
     color: rgb(131, 131, 131);
 }
 
-button{
+button, input{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-weight: 700;    
     font-size: 12px;
-    color: rgba(18, 143, 22, 0.795);
+    color: rgb(255, 255, 255);
+}
+
+input{
+    text-align: left;   
+    color: rgb(72, 72, 72); 
+}
+
+#enviar{
+    height: calc(100% - 15px);
+    max-height: 45px;
 }
 
 .digitando{
-    color : green;
+    color : rgb(214, 37, 241);
     font-size : 11px;
 }
 

@@ -107,6 +107,8 @@ $('#enviar').on('click', () => {
 
     let msg = $('#msg').val().trim();
 
+    socket.emit('digitandOut', { name: NAME });
+
     if (msg == '') {
         alert('Mensagem vazia');
     } else {
@@ -122,10 +124,22 @@ $('#msg').on('keypress', (event) => {
     }
 })
 
+let i ;
 
-$('#msg').on('focus', () => {
-    socket.emit('digitando', { name: NAME });
+$('#msg').on('keypress',evt =>
+{
+    if(evt.keyCode != 13)
+        socket.emit('digitando', { name: NAME });
+
+    window.clearInterval(i);
+
+    i = setInterval(()=>{
+
+        socket.emit('digitandOut', { name: NAME });
+    
+    }, 3000);
 })
+
 $('#msg').on('focusout', () => {
     socket.emit('digitandOut', { name: NAME });
 })
