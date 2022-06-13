@@ -7,10 +7,9 @@ Real time chat with basic functionalities made with express and sockect.io
 Just clone this project and run ```node server```
 
 
-<img src="/Public/Img/img_1.png" alt="Alt text" title="Login" style="width:100px;">
+<img src="/Public/Img/img_1.png" alt="Login" title="Login">
 
-<img src="/Public/Img/img_2.png" alt="Alt text" title="Main">
-
+<img src="/Public/Img/img_2.png" alt="Main" title="Main">
 
 ```
 ## Contributing
