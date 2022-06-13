@@ -1,5 +1,5 @@
 
-let App = require('./Models/App');
+let App = require('./Utils/App');
 
 let Routers = require('./Rotas/Rotas');
 

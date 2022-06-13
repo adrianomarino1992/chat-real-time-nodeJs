@@ -1,4 +1,4 @@
-let Utilidades = require('../Models/Utilidades/Utilizadades');
+let Utilidades = require('../Utils/Utilidades/Utilizadades');
 let Util = new Utilidades();
 
 
