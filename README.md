@@ -8,7 +8,7 @@ Just clone this project and run ```node server```
 
 ```
 
-![tela de login / login screen](/Public/Img/img_1.png "Text to show on mouseover")
+![login screen](https://github.com/adrianomarino1992/chat-real-time-nodeJs/blob/master/Public/Img/img_1.png "login screen")
 
 
 ## Contributing
