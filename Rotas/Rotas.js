@@ -41,12 +41,6 @@ exports.Start = (Application, _path) => {
     Application.App.get('/cardapio.png', function (req, res) {
         res.sendFile(_path + "/Public/Img/" + "cardapio.png");
     });
-    Application.App.get('/img_1.png', function (req, res) {
-        res.sendFile(_path + "/Public/Img/" + "img_1.png");
-    });
-    Application.App.get('/img_2.png', function (req, res) {
-        res.sendFile(_path + "/Public/Img/" + "img_2.png");
-    });
-
+    
       
 }

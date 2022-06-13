@@ -11,6 +11,10 @@ Just clone this project and run ```node server```
 
 <img src="/Public/Img/img_2.png" alt="Main" title="Main">
 
+<img src="/Public/Img/img_3.png" alt="Login" title="Login">
+
+<img src="/Public/Img/img_4.png" alt="Main" title="Main">
+
 ```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
