@@ -8,7 +8,7 @@ Just clone this project and run ```node server```
 
 ```
 
-![login screen](/Public/Img/img_1.png)
+<img src="/Public/Img/img_1.png" alt="Alt text" title="Optional title">
 
 
 ## Contributing
