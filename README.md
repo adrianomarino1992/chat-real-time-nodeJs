@@ -8,7 +8,7 @@ Just clone this project and run ```node server```
 
 ```
 
-![login screen](https://github.com/adrianomarino1992/chat-real-time-nodeJs/blob/master/Public/Img/img_1.png "login screen")
+![login screen](/Public/Img/img_1.png)
 
 
 ## Contributing
